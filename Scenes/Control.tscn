@@ -47,6 +47,7 @@ anchor_bottom = 1.0
 
 [node name="Main" type="Spatial" parent="."]
 script = ExtResource( 3 )
+num_idle_frame_return = 10
 
 [node name="CamContainer" type="Spatial" parent="Main"]
 
@@ -128,34 +129,34 @@ theme = ExtResource( 2 )
 text = "Temp 5"
 
 [node name="Temp6" type="Button" parent="Menu" groups=["spawn_button"]]
-margin_left = 824.0
-margin_top = 456.0
-margin_right = 1040.0
-margin_bottom = 528.0
+margin_left = 857.0
+margin_top = 1680.0
+margin_right = 1066.0
+margin_bottom = 1749.0
 theme = ExtResource( 2 )
 text = "Temp 6"
 
 [node name="Temp7" type="Button" parent="Menu" groups=["spawn_button"]]
-margin_left = 824.0
-margin_top = 544.0
-margin_right = 1040.0
-margin_bottom = 616.0
+margin_left = 857.0
+margin_top = 1760.0
+margin_right = 1073.0
+margin_bottom = 1832.0
 theme = ExtResource( 2 )
 text = "Temp 7"
 
 [node name="Temp8" type="Button" parent="Menu" groups=["spawn_button"]]
-margin_left = 824.0
-margin_top = 632.0
-margin_right = 1040.0
-margin_bottom = 704.0
+margin_left = 857.0
+margin_top = 1840.0
+margin_right = 1073.0
+margin_bottom = 1912.0
 theme = ExtResource( 2 )
 text = "Temp 8"
 
 [node name="Clear" type="Button" parent="Menu"]
-margin_left = 256.0
-margin_top = 1832.0
-margin_right = 832.0
-margin_bottom = 1904.0
+margin_left = 20.0
+margin_top = 1847.0
+margin_right = 338.0
+margin_bottom = 1916.0
 theme = ExtResource( 2 )
 text = "Fulg Nou"
 
