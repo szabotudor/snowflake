@@ -1,0 +1,35 @@
+[gd_scene format=2]
+
+[node name="Flake2" type="Spatial"]
+
+[node name="CSGCombiner" type="CSGCombiner" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0, 0 )
+
+[node name="CSGBox" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0 )
+height = 0.075
+depth = 0.2
+
+[node name="CSGCylinder" type="CSGCylinder" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05735, 0, 0 )
+radius = 0.115
+height = 0.075
+sides = 3
+
+[node name="pos1" type="Position3D" parent="." groups=["spawner"]]
+transform = Transform( 0.141421, -0.353553, 0, 0.141421, 0.353553, 0, 0, 0, 0.5, 0.8, 0, 0 )
+
+[node name="pos2" type="Position3D" parent="." groups=["spawner"]]
+transform = Transform( 0.141421, 0.353553, 0, -0.141421, 0.353553, 0, 0, 0, 0.5, 0.8, 0, 0 )
+
+[node name="pos3" type="Position3D" parent="." groups=["spawner"]]
+transform = Transform( 0.141421, -0.353553, 0, 0.141421, 0.353553, 0, 0, 0, 0.5, 1.2, 0, 0 )
+
+[node name="pos4" type="Position3D" parent="." groups=["spawner"]]
+transform = Transform( 0.141421, 0.353553, 0, -0.141421, 0.353553, 0, 0, 0, 0.5, 1.2, 0, 0 )
+
+[node name="pos5" type="Position3D" parent="." groups=["spawner"]]
+transform = Transform( 0.141421, -0.353553, 0, 0.141421, 0.353553, 0, 0, 0, 0.5, 1.6, 0, 0 )
+
+[node name="pos6" type="Position3D" parent="." groups=["spawner"]]
+transform = Transform( 0.141421, 0.353553, 0, -0.141421, 0.353553, 0, 0, 0, 0.5, 1.6, 0, 0 )
