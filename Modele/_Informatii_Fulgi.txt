@@ -1,0 +1,19 @@
+Baza Fulg -8C -> Folosit la un buton -8C si -30C
+Baza fulg -10C -> Folosit la un buton -3C si -20C
+Baza fulg -12C ->  Folosit la un buton -12C
+Baza fulg -20C -> Folosit la un buton -1C si -15C
+
+
+Ramura fulg -1C -> Folosit strict pe butonul -1C
+Ramura fulg -5C -> Folosit la -5C
+Ramura fulg -10C -> Folosit strict cu baza fulg -10C si -20C, la un butoanele -3C si -30C
+Ramura fulg -20C -> Folosit cu baza fulg -10C si -20C, la butoanele -1C si -20C
+
+Constructia fulgului cu baza -8C -> Se apasa pe butonul -8C apoi se vor folosi celelalte baze (ex. Apesi butonul -8C, apoi acesta ori dispare ori devine semi transparent sau greyed out, apoi cand se apasa butonul -10C, va aparea baza -10C si apoi cand apesi butonul -1C va aparea ramura fulg -20C).Nu se poate apasa -8C decat daca este folosit ca baza, nu are ramuri si devine greyed out cand este apasat, sau cand se alege o alta baza.
+
+
+Ecranul tip meniu - Un ecran in care sa se vada un fulg gata facut, de preferabil sa fie random construit. Odata ce se apasa pe ecran sa se intre in joc si sa apara UI-ul constructiei de fulgi. Titlul va fi "Creează fulgi!" si jos „Apasă pentru a începe”. 
+
+Butoanele cu temperaturi sa aibă fiecare semnul ° (grade) între cifră și simbolul C (celsius).
+
+
