@@ -11,6 +11,10 @@ onready var spawner_nodes: Array = [self]
 var temp_spawner_nodes: Array = []
 
 
+func _process(delta):
+	$CamContainer.rotate_y(deg2rad(rotation_speed * 0.1))
+
+
 func _input(event):
 	if Input.is_action_pressed("tap") and event is InputEventMouseMotion:
 		$CamContainer.rotate_y(deg2rad(-event.relative.x * rotation_speed))
