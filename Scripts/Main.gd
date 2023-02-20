@@ -7,31 +7,13 @@ var spawners = []
 var num_flakes_spawned: int = 0
 var now_spawning: bool = false
 
-
-func _ready():
-	spawners = get_spawners_from_node(self)
-
-
-func _process(delta):
-	$CamContainer.rotate_y(rotation_speed * delta)
+onready var spawner_nodes: Array = [self]
+var temp_spawner_nodes: Array = []
 
 
-func get_spawners_from_node(n: Node) -> Array:
-# warning-ignore:shadowed_variable
-	var spawners = []
-	for c in n.get_children():
-		if c.is_in_group("spawner"):
-			spawners.append(c)
-	return spawners
-
-
-func get_flakes_from_node(n: Node) -> Array:
-# warning-ignore:shadowed_variable
-	var spawners = []
-	for c in n.get_children():
-		if c.is_in_group("flake"):
-			spawners.append(c)
-	return spawners
+func _input(event):
+	if Input.is_action_pressed("tap") and event is InputEventMouseMotion:
+		$CamContainer.rotate_y(deg2rad(-event.relative.x * rotation_speed))
 
 
 func load_scene(var path) -> Node:
@@ -41,40 +23,37 @@ func load_scene(var path) -> Node:
 	return result
 
 
-func add_flake(flake):
-	if num_flakes_spawned > 3:
-		for c in $"../Menu".get_children():
-			if c.is_in_group("spawn_button"):
-				c.disabled = true
-		return
-	$"../Menu/Clear".disabled = true
-	now_spawning = true;
-	num_flakes_spawned += 1
-	print("Spawning flake: ", flake)
-	var node = load_scene(flake)
-	var spawners_temp = []
-	var ifn = 0
-	for s in spawners:
-		var temp = node.duplicate()
-		s.add_child(temp)
-		temp.add_to_group("flake")
-		spawners_temp += get_spawners_from_node(temp)
-		if ifn >= num_idle_frame_return:
-			yield(get_tree(), "idle_frame")
-			ifn = 0
-		ifn += 1
-	spawners = spawners_temp
-	now_spawning = false
-	$"../Menu/Clear".disabled = false
+func set_active(active: Dictionary) -> void:
+	$"../Menu".active = active
+	$"../Menu".init_buttons()
 
 
-func clear():
-	print("Clearing flake")
-	for s in spawners:
-		for f in get_flakes_from_node(s):
-			f.queue_free();
-	for c in $"../Menu".get_children():
-		if c.is_in_group("spawn_button"):
-			c.disabled = false
-	num_flakes_spawned = 0
-	spawners = get_spawners_from_node(self)
+func clear_spawnpoints() -> void:
+	spawner_nodes = []
+	temp_spawner_nodes = []
+func add_spawnpoints(spawnpoints: Array) -> void:
+	temp_spawner_nodes += spawnpoints
+
+
+func spawn_flake(flake: String, as_base: bool) -> void:
+	var f: Node
+	if as_base:
+		f = load_scene("res://Modele/import/baza-" + flake + ".tscn") 
+	else:
+		f = load_scene("res://Modele/import/ramura-" + flake + ".tscn")
+	
+
+	for s in spawner_nodes:
+		s.add_child(f.duplicate())
+	spawner_nodes = temp_spawner_nodes
+	temp_spawner_nodes = []
+
+
+func clear_all() -> void:
+	clear_spawnpoints()
+	
+	for c in get_children():
+		if c.is_in_group("base"):
+			c.queue_free()
+	
+	spawner_nodes = [self]

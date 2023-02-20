@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Modele/raw/ramura-1-20_baza-1-3-15-20.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Scripts/available.gd" type="Script" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+resource_name = "Material.001"
+albedo_color = Color( 0.85098, 0.964706, 0.992157, 1 )
+roughness = 0.4
+
+[node name="ramura-1-20" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )

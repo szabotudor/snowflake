@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Modele/raw/baza-12.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Scripts/available.gd" type="Script" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+resource_name = "Material.001"
+albedo_color = Color( 0.85098, 0.964706, 0.992157, 1 )
+roughness = 0.4
+
+[node name="baza-12" type="Spatial" groups=["base"]]
+script = ExtResource( 2 )
+active = {
+"1": "1",
+"5": "5"
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 2.295, 0, 0, 0, 3.45, 0, 0, 0, 2.3625, 0, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )
+
+[node name="Position3D" type="Position3D" parent="." groups=["spawnpoint"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.47 )
+
+[node name="Position3D2" type="Position3D" parent="." groups=["spawnpoint"]]
+transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0.391126, 0, 0.24169 )
+
+[node name="Position3D3" type="Position3D" parent="." groups=["spawnpoint"]]
+transform = Transform( -0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 0.393098, 0, -0.24 )
+
+[node name="Position3D4" type="Position3D" parent="." groups=["spawnpoint"]]
+transform = Transform( -1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, -1, 1.49012e-08, 0, -0.469575 )
+
+[node name="Position3D5" type="Position3D" parent="." groups=["spawnpoint"]]
+transform = Transform( -0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -0.392116, 0, -0.233267 )
+
+[node name="Position3D6" type="Position3D" parent="." groups=["spawnpoint"]]
+transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -0.391947, 0, 0.234445 )

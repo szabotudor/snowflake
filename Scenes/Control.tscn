@@ -1,44 +1,22 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=7 format=2]
 
+[ext_resource path="res://Modele/7_ice crystals snow texture-seamless.jpg" type="Texture" id=1]
 [ext_resource path="res://Themes/DefaultTheme.tres" type="Theme" id=2]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=4]
 
-[sub_resource type="OpenSimplexNoise" id=5]
-seed = 2515
-octaves = 5
-period = 11.5
-persistence = 0.771
-lacunarity = 1.33
-
-[sub_resource type="NoiseTexture" id=6]
-width = 1024
-height = 1024
-noise = SubResource( 5 )
-
-[sub_resource type="OpenSimplexNoise" id=2]
-seed = 6
-octaves = 9
-period = 3.5
-persistence = 0.0
-
-[sub_resource type="NoiseTexture" id=3]
-noise = SubResource( 2 )
-
-[sub_resource type="SpatialMaterial" id=4]
-albedo_color = Color( 0.462745, 0.745098, 0.32549, 1 )
-albedo_texture = SubResource( 6 )
-metallic_specular = 0.0
-roughness_texture = SubResource( 3 )
-depth_enabled = true
-depth_scale = 0.05
-depth_deep_parallax = false
-depth_flip_tangent = false
-depth_flip_binormal = false
-depth_texture = SubResource( 3 )
+[sub_resource type="SpatialMaterial" id=2]
+flags_world_triplanar = true
+albedo_texture = ExtResource( 1 )
+metallic = 0.16
+metallic_texture = ExtResource( 1 )
+roughness = 0.4
+roughness_texture_channel = 4
+uv1_scale = Vector3( 0.5, 0.5, 0.5 )
+uv1_triplanar = true
 
 [sub_resource type="CubeMesh" id=1]
-material = SubResource( 4 )
+material = SubResource( 2 )
 size = Vector3( 20, 2, 20 )
 
 [node name="Control" type="Control"]
@@ -56,116 +34,108 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.4, -4.6 )
 mesh = SubResource( 1 )
 skeleton = NodePath("../..")
 
-[node name="OmniLight" type="OmniLight" parent="Main/CamContainer"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.94395, 2.58121, -1.48741 )
+[node name="Camera" type="Camera" parent="Main/CamContainer"]
+transform = Transform( 1, 0, 0, 0, 0.49294, 0.870063, 0, -0.870063, 0.49294, 0, 4.55463, 2.63244 )
+
+[node name="OmniLight" type="OmniLight" parent="Main"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.556296, 2.58121, 0.694283 )
 light_energy = 0.556
 shadow_enabled = true
 omni_range = 17.24
-
-[node name="Camera" type="Camera" parent="Main/CamContainer"]
-transform = Transform( 1, 0, 0, 0, 0.49294, 0.870063, 0, -0.870063, 0.49294, 0, 6.02746, 2.75357 )
-
-[node name="pos1" type="Position3D" parent="Main" groups=["spawner"]]
-
-[node name="pos2" type="Position3D" parent="Main" groups=["spawner"]]
-transform = Transform( 0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 0, 0 )
-
-[node name="pos3" type="Position3D" parent="Main" groups=["spawner"]]
-transform = Transform( -0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 0, 0, 0 )
-
-[node name="pos4" type="Position3D" parent="Main" groups=["spawner"]]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
-
-[node name="pos5" type="Position3D" parent="Main" groups=["spawner"]]
-transform = Transform( -0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 0, 0, 0 )
-
-[node name="pos6" type="Position3D" parent="Main" groups=["spawner"]]
-transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 0, 0, 0 )
 
 [node name="Menu" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 4 )
-flake_file_list = [ "res://Scenes/Flake1.tscn", "res://Scenes/Flake2.tscn", "res://Scenes/Flake3.tscn" ]
+ignore_base_switch = [ "8", "30" ]
+active = {
+"1": "1-15",
+"12": "12",
+"15": "1-15",
+"20": "3-20",
+"3": "3-20",
+"30": "8-30",
+"8": "8-30"
+}
 
-[node name="Temp1" type="Button" parent="Menu" groups=["spawn_button"]]
-margin_left = 824.0
-margin_top = 16.0
-margin_right = 1040.0
-margin_bottom = 88.0
+[node name="1" type="Button" parent="Menu" groups=["spawn_button"]]
+margin_left = 64.0
+margin_top = 1568.0
+margin_right = 256.0
+margin_bottom = 1640.0
 theme = ExtResource( 2 )
-text = "Temp 1"
+text = "-1° C"
 
-[node name="Temp2" type="Button" parent="Menu" groups=["spawn_button"]]
-margin_left = 824.0
-margin_top = 104.0
-margin_right = 1040.0
-margin_bottom = 176.0
+[node name="3" type="Button" parent="Menu" groups=["spawn_button"]]
+margin_left = 320.0
+margin_top = 1568.0
+margin_right = 512.0
+margin_bottom = 1640.0
 theme = ExtResource( 2 )
-text = "Temp 2"
+text = "-3° C"
 
-[node name="Temp3" type="Button" parent="Menu" groups=["spawn_button"]]
-margin_left = 824.0
-margin_top = 192.0
-margin_right = 1040.0
-margin_bottom = 264.0
+[node name="5" type="Button" parent="Menu" groups=["spawn_button"]]
+margin_left = 576.0
+margin_top = 1568.0
+margin_right = 768.0
+margin_bottom = 1640.0
 theme = ExtResource( 2 )
-text = "Temp 3"
+text = "-5° C"
 
-[node name="Temp4" type="Button" parent="Menu" groups=["spawn_button"]]
-margin_left = 824.0
-margin_top = 280.0
-margin_right = 1040.0
-margin_bottom = 352.0
+[node name="8" type="Button" parent="Menu" groups=["spawn_button"]]
+margin_left = 832.0
+margin_top = 1568.0
+margin_right = 1024.0
+margin_bottom = 1640.0
 theme = ExtResource( 2 )
-text = "Temp 4"
+text = "-8° C"
 
-[node name="Temp5" type="Button" parent="Menu" groups=["spawn_button"]]
-margin_left = 824.0
-margin_top = 368.0
-margin_right = 1040.0
-margin_bottom = 440.0
+[node name="12" type="Button" parent="Menu" groups=["spawn_button"]]
+margin_left = 64.0
+margin_top = 1704.0
+margin_right = 256.0
+margin_bottom = 1776.0
 theme = ExtResource( 2 )
-text = "Temp 5"
+text = "-12° C"
 
-[node name="Temp6" type="Button" parent="Menu" groups=["spawn_button"]]
-margin_left = 857.0
-margin_top = 1680.0
-margin_right = 1066.0
-margin_bottom = 1749.0
+[node name="15" type="Button" parent="Menu" groups=["spawn_button"]]
+margin_left = 320.0
+margin_top = 1704.0
+margin_right = 512.0
+margin_bottom = 1776.0
 theme = ExtResource( 2 )
-text = "Temp 6"
+text = "-15° C"
 
-[node name="Temp7" type="Button" parent="Menu" groups=["spawn_button"]]
-margin_left = 857.0
-margin_top = 1760.0
-margin_right = 1073.0
-margin_bottom = 1832.0
+[node name="20" type="Button" parent="Menu" groups=["spawn_button"]]
+margin_left = 576.0
+margin_top = 1704.0
+margin_right = 768.0
+margin_bottom = 1776.0
 theme = ExtResource( 2 )
-text = "Temp 7"
+text = "-20° C"
 
-[node name="Temp8" type="Button" parent="Menu" groups=["spawn_button"]]
-margin_left = 857.0
-margin_top = 1840.0
-margin_right = 1073.0
-margin_bottom = 1912.0
+[node name="30" type="Button" parent="Menu" groups=["spawn_button"]]
+margin_left = 832.0
+margin_top = 1704.0
+margin_right = 1024.0
+margin_bottom = 1776.0
 theme = ExtResource( 2 )
-text = "Temp 8"
+text = "-30° C"
 
 [node name="Clear" type="Button" parent="Menu"]
-margin_left = 20.0
-margin_top = 1847.0
-margin_right = 338.0
-margin_bottom = 1916.0
+margin_left = 80.0
+margin_top = 1840.0
+margin_right = 1008.0
+margin_bottom = 1910.0
 theme = ExtResource( 2 )
 text = "Fulg Nou"
 
-[connection signal="button_up" from="Menu/Temp1" to="Menu" method="_on_spawn_pressed" binds= [ 0 ]]
-[connection signal="button_up" from="Menu/Temp2" to="Menu" method="_on_spawn_pressed" binds= [ 1 ]]
-[connection signal="button_up" from="Menu/Temp3" to="Menu" method="_on_spawn_pressed" binds= [ 2 ]]
-[connection signal="button_up" from="Menu/Temp4" to="Menu" method="_on_spawn_pressed" binds= [ 3 ]]
-[connection signal="button_up" from="Menu/Temp5" to="Menu" method="_on_spawn_pressed" binds= [ 4 ]]
-[connection signal="button_up" from="Menu/Temp6" to="Menu" method="_on_spawn_pressed" binds= [ 5 ]]
-[connection signal="button_up" from="Menu/Temp7" to="Menu" method="_on_spawn_pressed" binds= [ 6 ]]
-[connection signal="button_up" from="Menu/Temp8" to="Menu" method="_on_spawn_pressed" binds= [ 7 ]]
+[connection signal="pressed" from="Menu/1" to="Menu" method="_on_spawn_pressed" binds= [ "1" ]]
+[connection signal="pressed" from="Menu/3" to="Menu" method="_on_spawn_pressed" binds= [ "3" ]]
+[connection signal="pressed" from="Menu/5" to="Menu" method="_on_spawn_pressed" binds= [ "5" ]]
+[connection signal="pressed" from="Menu/8" to="Menu" method="_on_spawn_pressed" binds= [ "8" ]]
+[connection signal="pressed" from="Menu/12" to="Menu" method="_on_spawn_pressed" binds= [ "12" ]]
+[connection signal="pressed" from="Menu/15" to="Menu" method="_on_spawn_pressed" binds= [ "15" ]]
+[connection signal="pressed" from="Menu/20" to="Menu" method="_on_spawn_pressed" binds= [ "20" ]]
+[connection signal="pressed" from="Menu/30" to="Menu" method="_on_spawn_pressed" binds= [ "30" ]]
 [connection signal="button_up" from="Menu/Clear" to="Menu" method="_on_Clear"]
