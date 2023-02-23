@@ -35,9 +35,9 @@ skeleton = NodePath("../..")
 transform = Transform( 1, 0, 0, 0, 0.49294, 0.870063, 0, -0.870063, 0.49294, 0, 3.47536, 2.25087 )
 
 [node name="OmniLight" type="OmniLight" parent="Main"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51154, 2.58121, 1.80328 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.30314, 4.62385, 1.80328 )
 light_energy = 0.523
-omni_range = 17.24
+omni_range = 46.0865
 
 [node name="Menu" type="Control" parent="."]
 margin_right = 40.0
