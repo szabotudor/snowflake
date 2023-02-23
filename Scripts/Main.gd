@@ -16,7 +16,7 @@ func _process(delta):
 
 
 func _input(event):
-	if Input.is_action_pressed("tap") and event is InputEventMouseMotion:
+	if event is InputEventScreenDrag:
 		$CamContainer.rotate_y(deg2rad(-event.relative.x * rotation_speed))
 
 
