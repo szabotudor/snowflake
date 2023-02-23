@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Modele/172105752_l.png" type="Texture" id=1]
 [ext_resource path="res://Themes/DefaultTheme.tres" type="Theme" id=2]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=4]
+[ext_resource path="res://Themes/Kastore-Bold.otf" type="DynamicFontData" id=5]
+[ext_resource path="res://Scripts/IdleMenu.gd" type="Script" id=6]
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_texture = ExtResource( 1 )
@@ -14,6 +16,86 @@ uv2_scale = Vector3( 1, 0.997, 1 )
 [sub_resource type="CubeMesh" id=1]
 material = SubResource( 2 )
 size = Vector3( 20, 2, 20 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 142
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 69
+font_data = ExtResource( 5 )
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label2:custom_fonts/font:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 69 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label2:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 56, 1776 ) ]
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Label2:rect_position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 56, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Label2:rect_position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 1784, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "bruh"
+length = 3.0
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Label2:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 56, -0.25, 0, 0.25, 0, 56, -0.25, 0, 0.25, 0, 56, -0.25, 0, 0.25, 0, 56, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1.5, 3, 4.5 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Label2:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1784, -0.25, 0, 0.25, 0, 1752, -0.25, 0, 0.25, 0, 1784, -0.25, 0, 0.25, 0, 1752, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1.5, 3, 4.5 )
+}
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -40,6 +122,7 @@ light_energy = 0.523
 omni_range = 46.0865
 
 [node name="Menu" type="Control" parent="."]
+visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 4 )
@@ -126,6 +209,36 @@ margin_bottom = 1776.0
 theme = ExtResource( 2 )
 text = "-30° C"
 
+[node name="IdleMenu" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="IdleMenu"]
+margin_top = 72.0
+margin_right = 1075.0
+margin_bottom = 215.0
+theme = ExtResource( 2 )
+custom_fonts/font = SubResource( 3 )
+text = "Creează un fulg!"
+
+[node name="Label2" type="Label" parent="IdleMenu"]
+margin_left = 56.0
+margin_top = 1784.0
+margin_right = 1056.0
+margin_bottom = 1856.0
+theme = ExtResource( 2 )
+custom_fonts/font = SubResource( 4 )
+text = "Atinge ecranul pentru a începe!"
+
+[node name="Timer" type="Timer" parent="IdleMenu"]
+wait_time = 180.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="IdleMenu"]
+autoplay = "bruh"
+anims/RESET = SubResource( 5 )
+anims/bruh = SubResource( 6 )
+
 [connection signal="pressed" from="Menu/1" to="Menu" method="_on_spawn_pressed" binds= [ "1" ]]
 [connection signal="pressed" from="Menu/3" to="Menu" method="_on_spawn_pressed" binds= [ "3" ]]
 [connection signal="pressed" from="Menu/5" to="Menu" method="_on_spawn_pressed" binds= [ "5" ]]
@@ -135,3 +248,4 @@ text = "-30° C"
 [connection signal="pressed" from="Menu/20" to="Menu" method="_on_spawn_pressed" binds= [ "20" ]]
 [connection signal="button_up" from="Menu/20/Clear" to="Menu" method="_on_Clear"]
 [connection signal="pressed" from="Menu/30" to="Menu" method="_on_spawn_pressed" binds= [ "30" ]]
+[connection signal="timeout" from="IdleMenu/Timer" to="IdleMenu" method="_timer_timeout"]
